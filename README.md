@@ -43,7 +43,7 @@ udemy.com        - Kubernetes Certified Application Developer (CKAD)
 ``` 
 https://www.katacoda.com/oktaysavdi
 ```
-Small Detail
+**Small Detail**
 ```bash
 kubectl config set-context k8s
 ```
