@@ -5,10 +5,11 @@ alias kns="kubectl config set-context --current --namespace"
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
 alias kgd='kubectl get deploy'
+alias kdp='kubectl describe pod'
+alias kdd='kubectl describe deploy'
+alias kds='kubectl describe svc'
 alias kdp="kubectl delete po --grace-period=0 --force"
 alias krep="kubectl replace --force --grace-period=0 -f"
-alias ksec="oc get secret"
-alias kcm="oc get cm"
 ```
 **Bash**
 ```bash
