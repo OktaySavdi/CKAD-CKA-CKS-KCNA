@@ -1,5 +1,3 @@
-
-# CKAD
 **Alias**
 ```bash
 alias k="kubectl"
