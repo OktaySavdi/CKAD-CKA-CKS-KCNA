@@ -1,0 +1,104 @@
+- Network Policy
+- Dashboard
+- Kube-bench 
+- RBAC
+- NodeRestriction
+- Encrypted Etcd secret
+- OS Level Security
+   - Security Context 
+   - Set Container User and Group
+   - Force Container Non-Root  (runAsNonRoot: true (on securityContext))
+   - Privileged Container (Privileged: false (on securityContext))
+   - PrivilegedEscalation (allowPrivilegeEscalation: false (on securityContext))
+   - PodSecurityPolicy
+- OPA
+- Dockerfile - read file system,remove shell commands,add user and group,run non-root
+- Kubesec (static analysis)
+- Image Vulnerability Scanning (Clair and Trivy)
+- ImagePolicyWebhook (https://dzone.com/articles/kubernetes-image-policy-webhook-explained)
+- Falco
+- Immutability of container at runtime(startupProbe or securityContext)
+- Audit
+- AppArmor
+- Seccomp
+- Reduce Attack Surface
+
+# TIPS
+
+### Kube-bench
+docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:latest run --targets=master --version 1.21
+docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:latest run --targets=node --version 1.21
+
+### add new KUBECONFIG
+kubectl config set-credentials jane --client-key=jane.key --client-certificate=jane.crt
+kubectl config set-context jane --cluster=kubernetes --user=jane
+kubectl config view
+kubectl config get-contexts
+kubectl config use-context jane
+
+### Cluster Hardening
+Anonymous Access
+kube-apiserver-anonymous-auth=true|false
+--anonymous-auth=false
+
+Insecure Acces
+--insecure-port=8080
+
+Manuel Api Request
+curl -k https://172.17.0.8:6443 --cacert ca --cert crt --key key
+
+certificate info
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
+
+NodeRestriction
+--enable-admission-plugins=NodeRestriction
+
+
+cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep etcd
+ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt endpoint health
+ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt --key=/etc/kubernetes/pki/apiserver-etcd-client.key get /registry/secrets/default/mykey
+
+PodSecurityPolicies
+--enable-admission-plugins=PodSecurityPolicy
+kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies
+kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
+
+### OPA 
+kubectl create -f https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/course-content/opa/gatekeeper.yaml
+violation[{"msg": msg}] {
+  image := input.review.object.spec.containers[_].image
+  not startswith(image, "docker.io/")
+  not startswith(image, "k8s.gcr.io/")
+  msg := "not trusted image!"
+}
+
+### Dockerfile
+RUN chmod a-w /etc
+RUN rm -rf /bin/*
+addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
+USER appuser
+
+### KubeSec 
+docker run -i kubesec/kubesec:512c5e0 scan /dev/stdin < kubesec-test.yaml
+
+#Konftest
+docker run --rm -v $(pwd):/project openpolicyagent/conftest test deploy.yaml
+docker run --rm -v $(pwd):/project openpolicyagent/conftest test Dockerfile --all-namespaces
+
+### Trivy
+docker run ghcr.io/aquasecurity/trivy:latest image nginx:latest
+trivy image python:3.4-alpine
+trivy image --input ruby-2.3.0.tar
+
+### Audit 
+- --audit-policy-file=/etc/kubernetes/audit/policy.yaml
+- --audit-log-path=/etc/kubernetes/audit/logs/audit.log
+- --audit-log-maxsize=500
+- --audit-log-maxbackup=5
+
+### AppArmor
+docker run --security-opt apparmor=docker-nginx -d nginx
+
+### Seccomp
+docker run --security-opt seccomp=default.json -d nginx
