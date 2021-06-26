@@ -53,6 +53,7 @@ Manuel Api Request
 curl -k https://172.17.0.8:6443 --cacert ca --cert crt --key key
 
 certificate info
+openssl req -nodes -new -x509 -keyout accounts.key -out accounts.crt -subj "/CN=accounts.svc"
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
 
