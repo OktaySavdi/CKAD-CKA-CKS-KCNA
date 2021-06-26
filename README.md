@@ -37,10 +37,12 @@ https://kodekloud.com/courses
 ```
 **Video**
 ```
-linuxacademy.com - Certified Kubernetes Application Developer (CKAD)
-linuxacademy.com - Certified Kubernetes Administrator         (CKA)
-udemy.com        - Kubernetes Certified Application Developer (CKAD)
-udemy.com        - Certified Kubernetes Administrator         (CKA) 
+linuxacademy.com - Certified Kubernetes Application Developer      (CKAD)
+udemy.com        - Kubernetes Certified Application Developer      (CKAD)
+linuxacademy.com - Certified Kubernetes Administrator              (CKA)
+udemy.com        - Certified Kubernetes Administrator              (CKA) 
+udemy.com        - Kubernetes CKS 2021 Complete Course + Simulator (CKS) 
+acloud.guru.com  - Certified Kubernetes Security Specialist        (CKS)
 ```
 **Lab**
 ``` 
