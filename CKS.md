@@ -27,6 +27,17 @@
 
 # TIPS
 
+### Verify Kubernetes Binaries
+```ruby
+VERSION=$(v1.21.2)
+curl -LO "https://dl.k8s.io/$VERSION/bin/linux/amd64/kubectl.sha256"
+curl -LO "https://dl.k8s.io/$VERSION/bin/linux/amd64/kubelet.sha256"
+curl -LO "https://dl.k8s.io/$VERSION/bin/linux/amd64/kube-apiserver.sha256"
+echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+echo "$(<kubelet.sha256) kubelet" | sha256sum --check
+echo "$(<kube-apiserver.sha256) kube-apiserver" | sha256sum --check
+```
+
 ### Kube-bench
 ```ruby
 docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:latest run --targets=master --version 1.21
