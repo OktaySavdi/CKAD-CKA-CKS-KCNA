@@ -121,7 +121,7 @@ trivy image --input ruby-2.3.0.tar
 ```
 ### AppArmor
 ```ruby
-docker run --security-opt apparmor=docker-nginx -d nginx
+apparmor_parser /etc/apparmor.d/apparmor-k8s-deny-write
 ```
 ### Seccomp
 ```ruby
