@@ -14,14 +14,14 @@
    - PrivilegedEscalation (allowPrivilegeEscalation: false (on securityContext))
    - PodSecurityPolicy
 - OPA
-- Dockerfile - read file system,remove shell commands,add user and group,run non-root
+- Dockerfile (read file system,remove shell commands,add user and group,run non-root)
 - Kubesec (static analysis)
 - Image Vulnerability Scanning (Clair and Trivy)
 - ImagePolicyWebhook (https://dzone.com/articles/kubernetes-image-policy-webhook-explained)
 - Falco
 - Immutability of container at runtime(startupProbe or securityContext)
 - Audit
-- AppArmor
+- AppArmor (Linux kernel security - Host)
 - Seccomp
 - Reduce Attack Surface
 
