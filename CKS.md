@@ -63,19 +63,18 @@ Insecure Acces
 Manuel Api Request
 curl -k https://172.17.0.8:6443 --cacert ca --cert crt --key key
 
-certificate info
-openssl req -nodes -new -x509 -keyout accounts.key -out accounts.crt -subj "/CN=accounts.svc"
-openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
-openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
-
-NodeRestriction
---enable-admission-plugins=NodeRestriction
-
 cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep etcd
 ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt endpoint health
 ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt --key=/etc/kubernetes/pki/apiserver-etcd-client.key get /registry/secrets/default/mykey
-
-PodSecurityPolicies
+```
+### Certificate Info
+```ruby
+openssl req -nodes -new -x509 -keyout accounts.key -out accounts.crt -subj "/CN=accounts.svc"
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
+```
+### PodSecurityPolicies
+```ruby
 --enable-admission-plugins=PodSecurityPolicy
 kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies
 kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
