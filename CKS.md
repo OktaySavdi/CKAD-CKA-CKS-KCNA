@@ -80,16 +80,6 @@ PodSecurityPolicies
 kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies
 kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
 ```
-### OPA 
-```ruby
-kubectl create -f https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/course-content/opa/gatekeeper.yaml
-violation[{"msg": msg}] {
-  image := input.review.object.spec.containers[_].image
-  not startswith(image, "docker.io/")
-  not startswith(image, "k8s.gcr.io/")
-  msg := "not trusted image!"
-}
-```
 ### Dockerfile
 ```ruby
 RUN chmod a-w /etc
