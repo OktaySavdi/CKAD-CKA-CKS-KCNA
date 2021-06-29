@@ -19,7 +19,7 @@
 - Image Vulnerability Scanning (Clair and Trivy)
 - ImagePolicyWebhook (https://dzone.com/articles/kubernetes-image-policy-webhook-explained)
 - Falco (Threat detection engine)
-- Immutability of container at runtime(startupProbe or securityContext)
+- Immutability of container at runtime (startupProbe or securityContext)
 - Audit
 - AppArmor (Linux kernel security - Host)
 - Seccomp
