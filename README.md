@@ -56,6 +56,3 @@ kubectl config set-context k8s
 Windows: Ctrl+Insert to copy and Shift+Insert to paste.
 You can assume elevated privileges on any node by issuing the following command: sudo -i
 ```
-![image](https://user-images.githubusercontent.com/3519706/116961803-f9c93e80-acac-11eb-91b3-7082c1ff8e09.png)
-
-![image](https://user-images.githubusercontent.com/3519706/116961744-cf778100-acac-11eb-84f7-f836850601fc.png)
