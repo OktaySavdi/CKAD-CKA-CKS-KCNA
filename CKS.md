@@ -120,3 +120,7 @@ apparmor_parser /etc/apparmor.d/apparmor-k8s-deny-write
 ```ruby
 docker run --security-opt seccomp=default.json -d nginx
 ```
+### Falco
+```ruby
+falco -r my_rule.yaml -M 45
+```
