@@ -55,13 +55,6 @@ kubectl config use-context jane
 ```
 ### Cluster Hardening
 ```ruby
-Anonymous Access
-kube-apiserver-anonymous-auth=true|false
---anonymous-auth=false
-
-Insecure Acces
---insecure-port=8080
-
 Manuel Api Request
 curl -k https://172.17.0.8:6443 --cacert ca --cert crt --key key
 
@@ -81,25 +74,12 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
 kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies
 kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
 ```
-### OPA 
-```ruby
-kubectl create -f https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/course-content/opa/gatekeeper.yaml
-```
 ### Dockerfile
 ```ruby
 RUN chmod a-w /etc
 RUN rm -rf /bin/*
 addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
 USER appuser
-```
-### KubeSec 
-```ruby
-docker run -i kubesec/kubesec:512c5e0 scan /dev/stdin < kubesec-test.yaml
-```
-### Konftest
-```ruby
-docker run --rm -v $(pwd):/project openpolicyagent/conftest test deploy.yaml
-docker run --rm -v $(pwd):/project openpolicyagent/conftest test Dockerfile --all-namespaces
 ```
 ### Trivy
 ```ruby
