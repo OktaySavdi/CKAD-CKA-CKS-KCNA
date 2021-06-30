@@ -18,7 +18,6 @@ alias krep="kubectl replace --force --grace-period=0 -f"
 vi ~/.vimrc
 ```
 ```bash
-set number
 set tabstop=2 
 set shiftwidth=2 
 set expandtab
