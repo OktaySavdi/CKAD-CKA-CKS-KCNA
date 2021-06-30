@@ -126,9 +126,9 @@ docker run --security-opt seccomp=default.json -d nginx
 ```ruby
 falco -r my_rule.yaml -M 45
 
-rule: spawned_process_in_monitor_container
-desc: A process was spawned in the Monitor container
-condition: container.name = "monitor" and evt.type execve
-output: "%evt.time,%container.id, %container.image,%user.uid,%proc.name"
-priority: NOTICE
+- rule: spawned_process_in_monitor_container
+  desc: A process was spawned in the Monitor container
+  condition: container.name = "monitor" and evt.type execve
+  output: "%evt.time,%container.id, %container.image,%user.uid,%proc.name"
+  priority: NOTICE
 ```
