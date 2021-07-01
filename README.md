@@ -5,6 +5,7 @@
 alias k="kubectl"
 alias kns="kubectl config set-context --current --namespace"
 alias kgp='kubectl get pods'
+alias kgn='kubectl get nodes'
 alias kgs='kubectl get svc'
 alias kgd='kubectl get deploy'
 alias kdp='kubectl describe pod'
