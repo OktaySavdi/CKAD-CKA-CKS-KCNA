@@ -71,7 +71,7 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
 ### PodSecurityPolicies
 ```ruby
 --enable-admission-plugins=PodSecurityPolicy
-kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies
+kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies --resource-name=<psp_name>
 kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
 ```
 ### Dockerfile
