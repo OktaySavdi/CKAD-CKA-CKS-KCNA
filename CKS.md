@@ -106,6 +106,8 @@ docker run --security-opt seccomp=default.json -d nginx
 ```ruby
 falco -r my_rule.yaml -M 45
 
+tail -f /var/log/syslog | grep falco
+
 - rule: spawned_process_in_monitor_container
   desc: A process was spawned in the Monitor container
   condition: container.name = "monitor" and evt.type=execve
