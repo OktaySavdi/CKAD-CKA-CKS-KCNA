@@ -1,4 +1,4 @@
-## ckad and cka booksmark and recommendations
+## ckad,cka and cks booksmark and recommendations
 
 **Alias**
 ```bash
