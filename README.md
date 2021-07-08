@@ -34,6 +34,7 @@ https://link.medium.com/2p3DbJTQqeb
 https://kubewiz.com/ckad
 https://kodekloud.com/p/game-of-pods-game
 https://kodekloud.com/courses
+https://killer.sh
 ```
 **Video**
 ```
