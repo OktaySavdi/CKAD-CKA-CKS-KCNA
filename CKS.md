@@ -40,6 +40,7 @@ echo "$(<kube-apiserver.sha256) kube-apiserver" | sha256sum --check
 
 ### Kube-bench
 ```ruby
+kube-bench run --targets master
 kube-bench run --targets master,node,etcd,policies --version 1.20
 
 docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:latest run --targets=master --version 1.21
