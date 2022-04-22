@@ -5,6 +5,10 @@
 - Kube-bench 
 - RBAC
 - ServiceAccount Token Mounting 
+- Restricted Api Access
+   - insecure-port=0 (means disable)
+   - anonymous-auth=true
+   - enable-admission-plugins=NodeRestriction
 - NodeRestriction
 - Encrypted Etcd secret
 - OS Level Security
