@@ -4,6 +4,7 @@
 - Dashboard
 - Kube-bench 
 - RBAC
+- ServiceAccount Token Mounting 
 - NodeRestriction
 - Encrypted Etcd secret
 - OS Level Security
