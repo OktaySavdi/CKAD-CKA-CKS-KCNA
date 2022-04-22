@@ -9,7 +9,6 @@
    - insecure-port=0 (means disable)
    - anonymous-auth=true
    - enable-admission-plugins=NodeRestriction
-- NodeRestriction
 - Encrypted Etcd secret
 - OS Level Security
    - Security Context 
