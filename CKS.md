@@ -21,7 +21,7 @@
    - PrivilegedEscalation (allowPrivilegeEscalation: false (on securityContext))
    - PodSecurityPolicy
 - OPA
-- Dockerfile (read file system,remove shell commands,add user and group,run non-root)
+- Dockerfile (read file system,remove shell commands,add user and group,run non-root,multi-stage)
 - Kubesec (static analysis)
 - Image Vulnerability Scanning (Clair and Trivy)
 - ImagePolicyWebhook (https://dzone.com/articles/kubernetes-image-policy-webhook-explained)
