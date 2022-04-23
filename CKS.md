@@ -10,7 +10,7 @@
    - anonymous-auth=true
    - enable-admission-plugins=NodeRestriction
 - Encrypted Etcd secret
-- Container Runtime Sandbox (prevent use linux kernal)
+- Container Runtime Sandbox (prevent use linux kernal (RuntimeClass))
    - Runtime Katacontainers
    - Runtime gVisor
 - OS Level Security
