@@ -101,6 +101,8 @@ FROM alpine:3.14
 COPY --from=builder /app . 
 ## create user for non root
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
+## delete shell commands
+RUN rm -rf /bin/*
 USER appuser
 ## we can then kick off our newly compiled
 ## binary exectuable!!
