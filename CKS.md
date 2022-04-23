@@ -35,7 +35,7 @@
 # TIPS
 
 ### Verify Kubernetes Binaries
-```ruby
+```bash
 VERSION=$(v1.21.2)
 curl -LO "https://dl.k8s.io/$VERSION/bin/linux/amd64/kubectl.sha256"
 curl -LO "https://dl.k8s.io/$VERSION/bin/linux/amd64/kubelet.sha256"
@@ -46,7 +46,7 @@ echo "$(<kube-apiserver.sha256) kube-apiserver" | sha256sum --check
 ```
 
 ### Kube-bench
-```ruby
+```bash
 kube-bench run --targets master
 kube-bench run --targets master,node,etcd,policies --version 1.20
 
@@ -54,7 +54,7 @@ docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:late
 docker run --pid=host -v /etc:/etc:ro -v /var:/var:ro -t aquasec/kube-bench:latest run --targets=node --version 1.21
 ```
 ### add new KUBECONFIG
-```ruby
+```bash
 kubectl config set-credentials jane --client-key=jane.key --client-certificate=jane.crt
 kubectl config set-context jane --cluster=kubernetes --user=jane
 kubectl config view
@@ -62,7 +62,7 @@ kubectl config get-contexts
 kubectl config use-context jane
 ```
 ### Cluster Hardening
-```ruby
+```bash
 Manuel Api Request
 curl -k https://172.17.0.8:6443 --cacert ca --cert crt --key key
 
@@ -71,19 +71,42 @@ ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key
 ETCDCTL_API=3 etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt --key=/etc/kubernetes/pki/apiserver-etcd-client.key get /registry/secrets/default/mykey
 ```
 ### Certificate Info
-```ruby
+```bash
 openssl req -nodes -new -x509 -keyout accounts.key -out accounts.crt -subj "/CN=accounts.svc"
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -subject
 ```
 ### PodSecurityPolicies
-```ruby
+```bash
 --enable-admission-plugins=PodSecurityPolicy
 kubectl create clusterrole psp-allow --verb=use --resource=podsecuritypolicies --resource-name=<psp_name>
 kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --serviceaccount:default:default
 ```
 ### Dockerfile
-```ruby
+```dockerfile
+## We'll choose the incredibly lightweight
+## Go alpine image to work with
+FROM golang:1.11.1 AS builder
+
+## We create an /app directory in which
+## we'll put all of our project code
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
+## We want to build our application's binary executable
+RUN CGO_ENABLED=0 GOOS=linux go build -o main ./...
+
+## the lightweight scratch image we'll
+## run our application within
+FROM alpine:latest AS production
+## We have to copy the output from our
+## builder stage to our production stage
+COPY --from=builder /app .
+## we can then kick off our newly compiled
+## binary exectuable!!
+CMD ["./main"]
+```
+```bash
 RUN chmod a-w /etc
 RUN rm -rf /bin/*
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
@@ -92,28 +115,28 @@ RUN adduser --system --group --no-create-home appuser
 USER appuser
 ```
 ### Trivy
-```ruby
+```bash
 docker run ghcr.io/aquasecurity/trivy:latest image nginx:latest
 trivy image python:3.4-alpine
 trivy image --input ruby-2.3.0.tar
 ```
 ### Audit 
-```ruby
+```bash
 - --audit-policy-file=/etc/kubernetes/audit/policy.yaml
 - --audit-log-path=/etc/kubernetes/audit/logs/audit.log
 - --audit-log-maxsize=500
 - --audit-log-maxbackup=5
 ```
 ### AppArmor
-```ruby
+```bash
 apparmor_parser /etc/apparmor.d/apparmor-k8s-deny-write
 ```
 ### Seccomp
-```ruby
+```bash
 docker run --security-opt seccomp=default.json -d nginx
 ```
 ### Falco
-```ruby
+```bash
 falco -r my_rule.yaml -M 45
 
 tail -f /var/log/syslog | grep falco
