@@ -97,7 +97,7 @@ RUN CGO_ENABLED=1 go build app.go
 
 ## the lightweight scratch image we'll
 ## run our application within
-FROM alpine
+FROM alpine:3.14
 COPY --from=builder /app . 
 ## create user for non root
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
