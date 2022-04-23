@@ -86,7 +86,9 @@ kubectl create clusterrolebinding psp-allow-bn --clusterrole=psp-allow --service
 ```ruby
 RUN chmod a-w /etc
 RUN rm -rf /bin/*
-addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup -h /home/appuser
+or
+RUN adduser --system --group --no-create-home appuser
 USER appuser
 ```
 ### Trivy
