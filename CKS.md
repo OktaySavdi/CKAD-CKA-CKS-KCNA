@@ -30,8 +30,9 @@
    - Falco (Threat detection engine)
 - Immutability of container at runtime (startupProbe or securityContext)
 - Audit
-- AppArmor (Linux kernel security - Host)
-- Seccomp
+- Kernal Hardening Tools (Linux kernel security - Host)
+   - AppArmor
+   - Seccomp
 - Reduce Attack Surface
 
 # TIPS
