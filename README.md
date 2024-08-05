@@ -62,3 +62,5 @@ You can assume elevated privileges on any node by issuing the following command:
 ![2021-07-08 16_43_40-Fotoğraflar](https://user-images.githubusercontent.com/3519706/124932420-bc19c680-e00b-11eb-87b3-5f67fea7a50f.png)
 ![2021-07-08 16_43_06-Fotoğraflar](https://user-images.githubusercontent.com/3519706/124932429-bde38a00-e00b-11eb-8828-7efb21a40cd9.png)
 ![image](https://user-images.githubusercontent.com/3519706/145714821-7a502018-8126-4148-ba76-302a64c689e5.png)
+![image](https://github.com/user-attachments/assets/aada6f27-c2f3-4835-9591-f5c5eb457e83)
+
