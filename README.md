@@ -58,7 +58,7 @@ Windows: Ctrl+Insert to copy and Shift+Insert to paste.
 You can assume elevated privileges on any node by issuing the following command: sudo -i
 ```
 
-![Uploading image.png…]()
+<img width="460" height="350" alt="image" src="https://github.com/user-attachments/assets/7af736a7-e03b-40b0-80b9-2387b970796f" />
 ![2021-07-08 16_43_28-Fotoğraflar](https://user-images.githubusercontent.com/3519706/124932408-ba500300-e00b-11eb-919e-fb4f8464d8e6.png)
 ![2021-07-08 16_43_40-Fotoğraflar](https://user-images.githubusercontent.com/3519706/124932420-bc19c680-e00b-11eb-87b3-5f67fea7a50f.png)
 ![2021-07-08 16_43_06-Fotoğraflar](https://user-images.githubusercontent.com/3519706/124932429-bde38a00-e00b-11eb-8828-7efb21a40cd9.png)
